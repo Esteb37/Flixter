@@ -4,16 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp">
+    android:layout_marginTop="0dp"
+    android:layout_marginBottom="0dp"
+    android:background="@drawable/movie_selector"
+    android:orientation="horizontal"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+
 
     <ImageView
         android:id="@+id/ivPoster"
-        android:layout_width="364dp"
-        android:layout_height="197dp"
+        android:layout_width="336dp"
+        android:layout_height="194dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -25,6 +31,8 @@
         android:layout_marginTop="4dp"
         android:layout_marginRight="5dp"
         android:textSize="22sp"
+        android:fontFamily="sans-serif-black"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/ivPoster"
@@ -39,6 +47,11 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_corner"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.819"
@@ -46,4 +59,16 @@
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
         app:layout_constraintVertical_bias="0.0"
         tools:text="This is a text view with some text and this text is written as a text for preview of how a text should be. This is a text view with some text and this text is written as a text for preview of how a text should be. This is a text view with some text and this text is written as a text for preview of how a text should be." />
+
+    <RatingBar
+        android:id="@+id/rbRating3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="15dp"
+        android:progressTint="#C8E0F8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivPoster"
+        app:layout_constraintTop_toBottomOf="@+id/tvOverview" />
 </androidx.constraintlayout.widget.ConstraintLayout>

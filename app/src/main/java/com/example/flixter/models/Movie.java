@@ -17,6 +17,7 @@ public class Movie {
     String posterPath;
     String title;
     String overview;
+    double rating;
 
     //Movie id
     int id;
@@ -28,6 +29,7 @@ public class Movie {
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
         id = jsonObject.getInt("id");
+        rating = jsonObject.getDouble("vote_average");
     }
 
     //Transform array of json objects into array of movies;
@@ -64,4 +66,8 @@ public class Movie {
         return id;
     }
 
+    public double getRating(double stars) {
+
+        return rating*(stars/10);
+    }
 }

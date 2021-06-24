@@ -25,23 +25,28 @@ The following **stretch** features are implemented:
 The following **additional** features are implemented:
 
 * [x] Added information with a second HTTP request:
-      * [x] Release date
-      * [x] Genre
-      * [x] Runtime
+  * [x] Release date
+  * [x] Genre
+  * [x] Runtime
+  
 * [x] Retrieved similar movies with a third HTTP request and added posters to the movie pages
 * [x] Implemented a scrolling view to allow movie information to overflow
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented user stories:
+Here's a walkthrough of implemented user stories in portrait mode:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/Esteb37/Flixter/blob/master/Walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+Amd in landscape mode:
+
+<img src='https://github.com/Esteb37/Flixter/blob/master/Walkthrough_land.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [Kap](https://getkap.co/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+The most notable challenges for this assignment was the design aspects of the application. The Android Studio IDE and the language itself have a very poor management of the visual aspects of the application, and require over complicated solutions for simple tasks like rounding corners or adding a border.
 
 ## Open-source libraries used
 

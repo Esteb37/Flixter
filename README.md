@@ -45,7 +45,7 @@ GIF created with [Kap](https://getkap.co/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+The most notable challenges for this assignment was the design aspects of the application. The Android Studio IDE and the language itself have a very poor management of the visual aspects of the application, and require over complicated solutions for simple tasks like rounding corners or adding a border.
 
 ## Open-source libraries used
 

@@ -25,9 +25,10 @@ The following **stretch** features are implemented:
 The following **additional** features are implemented:
 
 * [x] Added information with a second HTTP request:
-      * [x] Release date
-      * [x] Genre
-      * [x] Runtime
+  * [x] Release date
+  * [x] Genre
+  * [x] Runtime
+  
 * [x] Retrieved similar movies with a third HTTP request and added posters to the movie pages
 * [x] Implemented a scrolling view to allow movie information to overflow
 

@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     //URl for the movie catalogue
     public static final String PLAYING_URL = "https://api.themoviedb.org/3/movie/top_rated?api_key=9ace9cb9774ff085d83b43b0724903f6&language=en-US&page=1";
 
-    //Tag for
+    //Tag for logging
     public static final String TAG = "MainActivity";
 
     //Local movie catalogue

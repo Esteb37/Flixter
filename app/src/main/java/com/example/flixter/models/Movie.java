@@ -17,6 +17,8 @@ public class Movie {
     String posterPath;
     String title;
     String overview;
+
+    //Movie id
     int id;
 
     //Movie constructor from JSON object

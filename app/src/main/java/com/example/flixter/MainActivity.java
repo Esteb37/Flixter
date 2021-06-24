@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
@@ -46,14 +45,11 @@ public class MainActivity extends AppCompatActivity {
 
         movies = new ArrayList<>();
 
-        MovieAdapter.OnClickListener onClickListener = new MovieAdapter.OnClickListener() {
-            @Override
-            public void onItemClicked(int position) {
-                Movie selectMovie = movies.get(position);
-                Intent i = new Intent(MainActivity.this, ActivityMovie.class);
-                i.putExtra("id",selectMovie.getId());
-                startActivityForResult(i,CODE);
-            }
+        MovieAdapter.OnClickListener onClickListener = position -> {
+            Movie selectMovie = movies.get(position);
+            Intent i = new Intent(MainActivity.this, ActivityMovie.class);
+            i.putExtra("id",selectMovie.getId());
+            startActivityForResult(i,CODE);
         };
 
         //Create the adapter

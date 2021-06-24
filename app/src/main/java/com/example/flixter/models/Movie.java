@@ -1,7 +1,4 @@
 package com.example.flixter.models;
-
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

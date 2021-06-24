@@ -103,12 +103,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     .into(ivPoster);
 
 
-            ivPoster.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    clickListener.onItemClicked(getAdapterPosition());
-                }
-            });
+            ivPoster.setOnClickListener(v -> clickListener.onItemClicked(getAdapterPosition()));
 
         }
     }

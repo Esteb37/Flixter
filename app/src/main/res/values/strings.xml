@@ -2,4 +2,16 @@
     <string name="app_name">Flixter</string>
     <string name="similar_movies">Similar Movies</string>
     <string name="todo">TODO</string>
+    <string name="similar_movies">Similar Movies</string>
+    <string name="second_similar">Second Similar</string>
+    <string name="third_similar">Third Similar</string>
+    <string name="first_similar">First Similar</string>
+    <string name="poster">Poster</string>
+    <string name="poster">Poster</string>
+    <string name="poster">Poster</string>
+    <string name="play">Play</string>
+    <string name="first_similar">First Similar</string>
+    <string name="second_similar">Second Similar</string>
+    <string name="third_similar">Third Similar</string>
+    <string name="poster">Poster</string>
 </resources>

@@ -17,6 +17,9 @@ public class Movie {
     String posterPath;
     String title;
     String overview;
+    String release;
+    int runtime;
+    String genre;
     double rating;
 
     //Movie id
@@ -29,7 +32,16 @@ public class Movie {
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
         id = jsonObject.getInt("id");
-        rating = jsonObject.getDouble("vote_average");
+        try{
+            rating = jsonObject.getDouble("vote_average");
+            runtime = jsonObject.getInt("runtime");
+            release = jsonObject.getString("release_date");
+            JSONObject genre = (JSONObject) jsonObject.getJSONArray("genres").get(0);
+            this.genre = (String) genre.get("name");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     //Transform array of json objects into array of movies;
@@ -67,7 +79,19 @@ public class Movie {
     }
 
     public double getRating(double stars) {
-
         return rating*(stars/10);
     }
+
+    public String getRelease() {
+        return release;
+    }
+
+    public int getRuntime() {
+        return runtime;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
 }

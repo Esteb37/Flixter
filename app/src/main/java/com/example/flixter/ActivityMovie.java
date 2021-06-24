@@ -3,6 +3,7 @@ package com.example.flixter;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.media.Rating;
 import android.os.Bundle;
 import android.util.Log;
@@ -58,55 +59,34 @@ public class ActivityMovie extends AppCompatActivity {
                 Log.d(TAG, "onSuccess");
 
                 //Get movie request as JSON object;
-                JSONObject movie = json.jsonObject;
+                Movie movie = null;
 
-
                 try {
-                    tvTitle.setText(movie.getString("title"));
-                    getSupportActionBar().setTitle(movie.getString("title"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    tvOverview.setText(movie.getString("overview"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    tvYear.setText(movie.getString("release_date"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    tvTime.setText(movie.getString("runtime")+" mins");
+                    movie = new Movie(json.jsonObject);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-                try {
-                    JSONObject genre = (JSONObject) movie.getJSONArray("genres").get(0);
-                    tvGenre.setText((String) genre.get("name"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                tvTitle.setText(movie.getTitle());
+                getSupportActionBar().setTitle(movie.getTitle());
+                tvOverview.setText(movie.getOverview());
+                tvYear.setText(movie.getRelease());
+                tvTime.setText(movie.getRuntime()+" mins");
+                tvGenre.setText(movie.getGenre());
+                rbRating.setRating((float) movie.getRating(5));
 
-                double rating = 0;
-                try {
-                    rating = movie.getDouble("vote_average")/2;
-                    rbRating.setRating((float) rating);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
+                String imageURL;
                 context = getApplicationContext();
-                try {
-                    Glide.with(context).load(String.format("https://image.tmdb.org/t/p/w342/%s",movie.getString("poster_path")))
-                            .placeholder(R.mipmap.placeholder)
-                            .error(R.mipmap.placeholder)
-                            .into(ivPoster);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+                    imageURL = movie.getBackdropPath();
                 }
+                else{
+                    imageURL = movie.getPosterPath();
+                }
+                Glide.with(context).load(String.format("https://image.tmdb.org/t/p/w342/%s",imageURL))
+                        .placeholder(R.mipmap.placeholder)
+                        .error(R.mipmap.placeholder)
+                        .into(ivPoster);
 
             }
 

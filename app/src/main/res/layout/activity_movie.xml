@@ -21,7 +21,8 @@
             android:layout_marginTop="5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            android:contentDescription="@string/poster" />
 
         <TextView
             android:id="@+id/tvTitle2"
@@ -31,7 +32,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:textColor="#B4EAFE"
-            android:textSize="40dp"
+            android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/ivPoster2"
@@ -53,59 +54,47 @@
             app:layout_constraintStart_toEndOf="@+id/ivPoster2"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle2" />
 
-        <TableLayout
-            android:id="@+id/tableLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="397dp"
+            android:layout_height="match_parent"
             android:layout_marginTop="20dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivPoster2">
 
-            <TableRow
+            <TextView
+                android:id="@+id/tvYear"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                tools:text="1999" />
 
-                <LinearLayout
-                    android:layout_width="397dp"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                tools:text="139 mins" />
 
-                    <TextView
-                        android:id="@+id/tvYear"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textAlignment="center"
-                        android:textColor="#FFFFFF"
-                        android:textSize="24sp"
-                        tools:text="1999" />
+            <TextView
+                android:id="@+id/tvGenre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                tools:text="Drama" />
+        </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/tvTime"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textAlignment="center"
-                        android:textColor="#FFFFFF"
-                        android:textSize="24sp"
-                        tools:text="139 mins" />
-
-                    <TextView
-                        android:id="@+id/tvGenre"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:autoText="false"
-                        android:textAlignment="center"
-                        android:textColor="#FFFFFF"
-                        android:textSize="24sp"
-                        tools:text="Drama" />
-                </LinearLayout>
-            </TableRow>
-
-        </TableLayout>
 
         <TextView
             android:id="@+id/tvOverview2"
@@ -119,8 +108,9 @@
             android:textColor="#000000"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
             tools:text='A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground "fight clubs" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.' />
 
         <TextView
@@ -156,28 +146,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_launcher_background"
-                tools:srcCompat="@tools:sample/avatars"
-                android:contentDescription="TODO" />
+                android:contentDescription="@string/first_similar"
+                app:srcCompat="@mipmap/placeholder"
+                tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/similar2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_launcher_background"
-                tools:srcCompat="@tools:sample/avatars"
-                android:contentDescription="TODO" />
+                android:contentDescription="@string/second_similar"
+                app:srcCompat="@mipmap/placeholder"
+                tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/similar3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_launcher_background"
-                tools:srcCompat="@tools:sample/avatars"
-                android:contentDescription="TODO" />
+                android:contentDescription="@string/third_similar"
+                app:srcCompat="@mipmap/placeholder"
+                tools:srcCompat="@tools:sample/avatars" />
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="80dp"
+            android:layout_height="67dp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivPoster2"
+            app:layout_constraintEnd_toEndOf="@+id/ivPoster2"
+            app:layout_constraintStart_toStartOf="@+id/ivPoster2"
+            app:layout_constraintTop_toTopOf="@+id/ivPoster2"
+            app:srcCompat="@android:drawable/ic_media_play"
+            android:contentDescription="@string/play" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

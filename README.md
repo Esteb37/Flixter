@@ -33,9 +33,13 @@ The following **additional** features are implemented:
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented user stories:
+Here's a walkthrough of implemented user stories in portrait mode:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/Esteb37/Flixter/blob/master/Walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+Amd in landscape mode:
+
+<img src='https://github.com/Esteb37/Flixter/blob/master/Walkthrough_land.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [Kap](https://getkap.co/).
 

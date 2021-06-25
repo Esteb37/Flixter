@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.SearchView;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
@@ -16,6 +17,7 @@ import com.example.flixter.databinding.ActivityMainBinding;
 import com.example.flixter.models.Movie;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView rvMovies = findViewById(R.id.rvMovies);
         FloatingActionButton btnUp = findViewById(R.id.btnUp);
+        SearchView svSearch = findViewById(R.id.svSearch);
 
         movies = new ArrayList<>();
 
@@ -73,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         MovieAdapter.OnScrollListener onScrollListener = position ->{
             if(position>=movies.size()-1){
                 page+=1;
-                loadMovies(page);
+                getCatalogue(catalogue,page);
             }
         };
 
@@ -90,21 +93,35 @@ public class MainActivity extends AppCompatActivity {
 
         //Create request for the movie catalogue
 
-        loadMovies(page);
+        getCatalogue("now_playing",1);
 
-        btnUp.setOnClickListener(new View.OnClickListener(){
+        btnUp.setOnClickListener(v -> {
+            LinearLayoutManager layoutManager1 = (LinearLayoutManager) rvMovies
+                    .getLayoutManager();
+            assert layoutManager1 != null;
+            layoutManager1.scrollToPositionWithOffset(0, 0);
+        });
+
+        svSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
-            public void onClick(View v) {
-                LinearLayoutManager layoutManager = (LinearLayoutManager) rvMovies
-                        .getLayoutManager();
-                layoutManager.scrollToPositionWithOffset(0, 0);
+            public boolean onQueryTextSubmit(String query) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                String SEARCH_URL = "https://api.themoviedb.org/3/search/movie?api_key="+API_KEY+"&language=en-US&query="+newText+"&page=1&include_adult=true";
+                movies.clear();
+                movieAdapter.notifyDataSetChanged();
+                loadMovies(SEARCH_URL);
+                return false;
             }
         });
     }
 
-    public void loadMovies(int page){
-        final String URL = String.format("https://api.themoviedb.org/3/movie/%s?api_key=%s&language=en-US&page=%s", catalogue,API_KEY, page);
+    public void loadMovies(String URL){
         client.get(URL, new JsonHttpResponseHandler() {
 
             //If the request is successfully
@@ -138,11 +155,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void getCatalogue(View view){
+    public void getCatalogue(@NotNull View view){
         catalogue = view.getTag().toString();
+        getCatalogue(catalogue,1);
+    }
+
+    public void getCatalogue(String catalogue, int page){
+        this.catalogue = catalogue;
         movies.clear();
         movieAdapter.notifyDataSetChanged();
-        loadMovies(1);
+        final String URL = String.format("https://api.themoviedb.org/3/movie/%s?api_key=%s&language=en-US&page=%s", catalogue,API_KEY, page);
+        loadMovies(URL);
     }
 
 }

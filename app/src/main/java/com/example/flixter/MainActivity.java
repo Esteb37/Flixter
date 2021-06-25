@@ -36,17 +36,19 @@ public class MainActivity extends AppCompatActivity {
 
     MovieAdapter movieAdapter;
 
+    int page = 1;
+    String API_KEY;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        String API_KEY = getString(R.string.api_key);
-        final String PLAYING_URL = String.format("https://api.themoviedb.org/3/movie/top_rated?api_key=%s&language=en-US&page=1", API_KEY);
+        API_KEY = getString(R.string.api_key);
 
         RecyclerView rvMovies = findViewById(R.id.rvMovies);
 
         movies = new ArrayList<>();
+
 
         MovieAdapter.OnClickListener onClickListener = position -> {
             Movie selectMovie = movies.get(position);
@@ -56,7 +58,10 @@ public class MainActivity extends AppCompatActivity {
         };
 
         MovieAdapter.OnScrollListener onScrollListener = position ->{
-
+            if(position>=movies.size()-1){
+                page+=1;
+                loadMovies(page);
+            }
         };
 
         //Create the adapter
@@ -68,13 +73,12 @@ public class MainActivity extends AppCompatActivity {
         //Set a layout manager for the recyclerview
         rvMovies.setLayoutManager((new LinearLayoutManager(this)));
 
-
-
         //Create request for the movie catalogue
-
+        loadMovies(page);
     }
 
-    public void loadMovies(int page, String URL){
+    public void loadMovies(int page){
+        final String URL = String.format("https://api.themoviedb.org/3/movie/top_rated?api_key=%s&language=en-US&page=%s", API_KEY, page);
         client.get(URL, new JsonHttpResponseHandler() {
 
             //If the request is successfully

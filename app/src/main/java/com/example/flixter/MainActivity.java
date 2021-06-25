@@ -115,10 +115,12 @@ public class MainActivity extends AppCompatActivity {
                 String SEARCH_URL = "https://api.themoviedb.org/3/search/movie?api_key="+API_KEY+"&language=en-US&query="+newText+"&page=1&include_adult=true";
                 movies.clear();
                 movieAdapter.notifyDataSetChanged();
-                loadMovies(SEARCH_URL);
+                if(newText.length()>0) loadMovies(SEARCH_URL);
+                else getCatalogue(catalogue,1);
                 return false;
             }
         });
+
     }
 
     public void loadMovies(String URL){
@@ -157,13 +159,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void getCatalogue(@NotNull View view){
         catalogue = view.getTag().toString();
+        movies.clear();
+        movieAdapter.notifyDataSetChanged();
         getCatalogue(catalogue,1);
     }
 
     public void getCatalogue(String catalogue, int page){
         this.catalogue = catalogue;
-        movies.clear();
-        movieAdapter.notifyDataSetChanged();
         final String URL = String.format("https://api.themoviedb.org/3/movie/%s?api_key=%s&language=en-US&page=%s", catalogue,API_KEY, page);
         loadMovies(URL);
     }

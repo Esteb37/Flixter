@@ -8,27 +8,42 @@
     android:layout_marginBottom="0dp"
     android:background="@drawable/movie_selector"
     android:orientation="horizontal"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp">
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <ImageView
+        android:id="@+id/ivBackdrop"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.3"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:srcCompat="@tools:sample/backgrounds/scenic"
+        android:contentDescription="@string/backdrop" />
 
     <ImageView
         android:id="@+id/ivPoster"
         android:layout_width="149dp"
         android:layout_height="194dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@android:drawable/dialog_holo_light_frame"
+        android:contentDescription="@string/poster"
         android:elevation="10dp"
         android:paddingLeft="0dp"
         android:paddingTop="0dp"
         android:paddingRight="0dp"
         android:paddingBottom="0dp"
         android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tvTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars"
-        android:contentDescription="@string/poster" />
+        tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/tvTitle"
@@ -49,35 +64,39 @@
     <TextView
         android:id="@+id/tvOverview"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="5dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corner"
-        android:paddingLeft="5dp"
+        android:paddingStart="15dp"
         android:paddingTop="5dp"
-        android:paddingRight="5dp"
+        android:paddingEnd="5dp"
         android:paddingBottom="5dp"
 
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/ivPoster"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.819"
         app:layout_constraintStart_toEndOf="@+id/ivPoster"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@+id/rbRating3"
         app:layout_constraintVertical_bias="0.0"
         tools:text="This is a text view with some text and this text is written as a text for preview of how a text should be. This is a text view with some text and this text is written as a text for preview of how a text should be. This is a text view with some text and this text is written as a text for preview of how a text should be." />
 
     <RatingBar
         android:id="@+id/rbRating3"
-        android:layout_width="151dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="15dp"
-        android:numStars="3"
-        android:progressTint="#C8E0F8"
-        app:layout_constraintEnd_toStartOf="@+id/tvOverview"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivPoster" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="top"
+        android:maxWidth="1000dp"
+        android:maxHeight="1000dp"
+        android:rating="1"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        android:scrollX="0dp"
+        android:theme="@style/RatingBar"
+        android:translationX="-60dp"
+        app:layout_constraintEnd_toEndOf="@+id/tvTitle"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

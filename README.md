@@ -28,7 +28,9 @@ The following **additional** features are implemented:
 
 * [x] Implemented catalogue menu to choose between Now Playing, Upcoming and Top Rated movies
 
-* [x] Added information with a second HTTP request:
+* [x] Implemented movie lookup through searchbar
+
+* [x] Additional information in Movie Details page
   * [x] Release date
   * [x] Genre
   * [x] Runtime

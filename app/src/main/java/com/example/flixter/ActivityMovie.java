@@ -14,6 +14,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.FitCenter;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.flixter.databinding.ActivityMainBinding;
@@ -51,6 +53,7 @@ public class ActivityMovie extends AppCompatActivity {
         RatingBar rbRating = findViewById(R.id.rbRating);
         String TAG = "MainActivity";
         ImageView[] similarPosters = new ImageView[]{findViewById(R.id.similar1), findViewById(R.id.similar2), findViewById(R.id.similar3)};
+        ImageView[] bsimilarPosters = new ImageView[]{findViewById(R.id.bsimilar1), findViewById(R.id.bsimilar2), findViewById(R.id.bsimilar3)};
 
 
         AsyncHttpClient client = new AsyncHttpClient();
@@ -91,15 +94,12 @@ public class ActivityMovie extends AppCompatActivity {
                 tvGenre.setText(movie.getGenre());
                 rbRating.setRating((float) movie.getRating(5));
 
-                String imageURL;
+                String imageURL = movie.getBackdropPath();
                 context = getApplicationContext();
-                if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    imageURL = movie.getBackdropPath();
-                } else {
-                    imageURL = movie.getPosterPath();
-                }
+
                 Glide.with(context).load(String.format("https://image.tmdb.org/t/p/w342/%s", imageURL))
                         .placeholder(R.mipmap.placeholder)
+                        .transform(new FitCenter(), new RoundedCorners(30))
                         .error(R.mipmap.placeholder)
                         .into(ivPoster);
 
@@ -130,8 +130,13 @@ public class ActivityMovie extends AppCompatActivity {
                         jsonSimilar = (JSONObject) similarMovies.get(j);
                         Glide.with(context).load(String.format("https://image.tmdb.org/t/p/w342/%s", jsonSimilar.getString("poster_path")))
                                 .placeholder(R.mipmap.placeholder)
+                                .transform(new FitCenter(), new RoundedCorners(30))
                                 .error(R.mipmap.placeholder)
                                 .into(similarPosters[j]);
+                        Glide.with(context).load(String.format("https://image.tmdb.org/t/p/w342/%s", jsonSimilar.getString("poster_path")))
+                                .placeholder(R.mipmap.placeholder)
+                                .error(R.mipmap.placeholder)
+                                .into(bsimilarPosters[j]);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

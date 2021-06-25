@@ -36,7 +36,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     OnClickListener clickListener;
 
     public interface OnScrollListener {
-        public void onScroll(int position);
+        void onScroll(int position);
     }
 
     OnScrollListener scrollListener;
@@ -81,6 +81,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         TextView tvTitle;
         TextView tvOverview;
         ImageView ivPoster;
+        ImageView ivBackdrop;
         RatingBar rbRating;
 
         public ViewHolder(@NonNull View itemView) {
@@ -90,6 +91,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             tvOverview = itemView.findViewById(R.id.tvOverview);
             ivPoster = itemView.findViewById(R.id.ivPoster);
             rbRating = itemView.findViewById(R.id.rbRating3);
+            ivBackdrop = itemView.findViewById(R.id.ivBackdrop);
         }
 
         public void bind(Movie movie) {
@@ -99,19 +101,21 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             float rating;
             if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 imageURL = movie.getBackdropPath();
-                rating = (float) movie.getRating(5);
+
             } else {
                 imageURL = movie.getPosterPath();
-                rating = (float) movie.getRating(3);
             }
-
+            rating = (float) movie.getRating(5);
             rbRating.setRating(rating);
             Glide.with(context).load(imageURL)
                     .placeholder(R.mipmap.placeholder)
                     .transform(new FitCenter(), new RoundedCorners(30))
                     .error(R.mipmap.placeholder)
                     .into(ivPoster);
-
+            Glide.with(context).load(movie.getBackdropPath())
+                    .placeholder(R.mipmap.placeholder)
+                    .error(R.mipmap.placeholder)
+                    .into(ivBackdrop);
 
             ivPoster.setOnClickListener(v -> clickListener.onItemClicked(getAdapterPosition()));
 

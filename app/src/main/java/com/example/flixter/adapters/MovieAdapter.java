@@ -2,6 +2,7 @@ package com.example.flixter.adapters;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,18 +28,25 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     List<Movie> movies;
 
     //Click listener
-    public interface OnClickListener{
+    public interface OnClickListener {
         void onItemClicked(int position);
     }
 
+
     OnClickListener clickListener;
 
-    public MovieAdapter(Context context, List<Movie> movies,OnClickListener onClickListener) {
+    public interface OnScrollListener {
+        public void onScroll(int position);
+    }
+
+    OnScrollListener scrollListener;
+
+    public MovieAdapter(Context context, List<Movie> movies, OnClickListener onClickListener, OnScrollListener scrollListener) {
         this.context = context;
         this.movies = movies;
         this.clickListener = onClickListener;
+        this.scrollListener = scrollListener;
     }
-
 
 
     @NonNull
@@ -46,7 +54,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     @Override
     //Inflates the layout from XML and returns the holder
     public ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        View movieView = LayoutInflater.from(context).inflate(R.layout.item_movie,parent,false);
+        View movieView = LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false);
 
         return new ViewHolder(movieView);
     }
@@ -58,6 +66,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         Movie movie = movies.get(position);
         //
         holder.bind(movie);
+        if (scrollListener != null)
+            scrollListener.onScroll(position);
     }
 
     //Get amount of items in the list
@@ -66,13 +76,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         return movies.size();
     }
 
-    public class ViewHolder  extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvTitle;
         TextView tvOverview;
         ImageView ivPoster;
         RatingBar rbRating;
-        public ViewHolder(@NonNull View itemView){
+
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvTitle = itemView.findViewById(R.id.tvTitle);
@@ -81,24 +92,23 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             rbRating = itemView.findViewById(R.id.rbRating3);
         }
 
-        public void bind(Movie movie){
+        public void bind(Movie movie) {
             tvTitle.setText(movie.getTitle());
             tvOverview.setText(movie.getOverview());
             String imageURL;
             float rating;
-            if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 imageURL = movie.getBackdropPath();
-                rating =(float) movie.getRating(5);
-            }
-            else{
+                rating = (float) movie.getRating(5);
+            } else {
                 imageURL = movie.getPosterPath();
-                rating =(float) movie.getRating(3);
+                rating = (float) movie.getRating(3);
             }
 
             rbRating.setRating(rating);
             Glide.with(context).load(imageURL)
                     .placeholder(R.mipmap.placeholder)
-                    .transform(new FitCenter(),new RoundedCorners(30))
+                    .transform(new FitCenter(), new RoundedCorners(30))
                     .error(R.mipmap.placeholder)
                     .into(ivPoster);
 
@@ -107,4 +117,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
         }
     }
+
+
 }

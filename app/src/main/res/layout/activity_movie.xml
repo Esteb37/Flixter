@@ -41,7 +41,7 @@
 
         <RatingBar
             android:id="@+id/rbRating"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="7dp"
@@ -104,6 +104,10 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/rounded_corner"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="15dp"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="20sp"
@@ -111,6 +115,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            tools:ignore="RtlSymmetry"
             tools:text='A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground "fight clubs" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.' />
 
         <TextView
@@ -143,28 +148,44 @@
 
             <ImageView
                 android:id="@+id/similar1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="100dp"
+                android:layout_height="200dp"
                 android:layout_weight="1"
+                android:adjustViewBounds="false"
                 android:contentDescription="@string/first_similar"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                android:scaleType="fitXY"
                 app:srcCompat="@mipmap/placeholder"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/similar2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="200dp"
                 android:layout_weight="1"
                 android:contentDescription="@string/second_similar"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                android:scaleType="fitXY"
                 app:srcCompat="@mipmap/placeholder"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/similar3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="200dp"
                 android:layout_weight="1"
                 android:contentDescription="@string/third_similar"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                android:scaleType="fitXY"
                 app:srcCompat="@mipmap/placeholder"
                 tools:srcCompat="@tools:sample/avatars" />
         </LinearLayout>

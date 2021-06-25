@@ -1,4 +1,5 @@
 package com.example.flixter.models;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,7 +30,7 @@ public class Movie {
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
         id = jsonObject.getInt("id");
-        try{
+        try {
             rating = jsonObject.getDouble("vote_average");
             runtime = jsonObject.getInt("runtime");
             release = jsonObject.getString("release_date");
@@ -46,7 +47,7 @@ public class Movie {
         List<Movie> movies = new ArrayList<>();
 
         //Transform all json objects into movie objects and add to the movie array
-        for(int i = 0;i<movieJsonArray.length();i++){
+        for (int i = 0; i < movieJsonArray.length(); i++) {
             movies.add(new Movie(movieJsonArray.getJSONObject(i)));
         }
 
@@ -55,11 +56,11 @@ public class Movie {
 
     //Get image url
     public String getPosterPath() {
-        return String.format("https://image.tmdb.org/t/p/w342/%s",posterPath);
+        return String.format("https://image.tmdb.org/t/p/w342/%s", posterPath);
     }
 
     public String getBackdropPath() {
-        return String.format("https://image.tmdb.org/t/p/w342/%s",backdropPath);
+        return String.format("https://image.tmdb.org/t/p/w342/%s", backdropPath);
     }
 
 
@@ -76,7 +77,7 @@ public class Movie {
     }
 
     public double getRating(double stars) {
-        return rating*(stars/10);
+        return rating * (stars / 10);
     }
 
     public String getRelease() {

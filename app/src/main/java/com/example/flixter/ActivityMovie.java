@@ -43,18 +43,18 @@ public class ActivityMovie extends AppCompatActivity {
         ImageView ivPoster = findViewById(R.id.ivPoster2);
         RatingBar rbRating = findViewById(R.id.rbRating);
         String TAG = "MainActivity";
-        ImageView[] similarPosters = new ImageView[]{findViewById(R.id.similar1),findViewById(R.id.similar2),findViewById(R.id.similar3)};
+        ImageView[] similarPosters = new ImageView[]{findViewById(R.id.similar1), findViewById(R.id.similar2), findViewById(R.id.similar3)};
 
 
         AsyncHttpClient client = new AsyncHttpClient();
 
         int id = getIntent().getExtras().getInt("id");
 
-        final String API_KEY = "9ace9cb9774ff085d83b43b0724903f6";
+        final String API_KEY = getString(R.string.api_key);
+
         final String MOVIE_URL = String.format("https://api.themoviedb.org/3/movie/%s?api_key=%s&language=en-US", id, API_KEY);
         final String SIMILAR_URL = String.format("https://api.themoviedb.org/3/movie/%s/similar?api_key=%s&language=en-US&page=1", id, API_KEY);
         final String VIDEOS_URL = String.format("https://api.themoviedb.org/3/movie/%s/videos?api_key=%s&language=en-US&page=1", id, API_KEY);
-
 
 
         //Create request for the movie catalogue
@@ -79,26 +79,24 @@ public class ActivityMovie extends AppCompatActivity {
                 tvTitle.setText(movie.getTitle());
                 Objects.requireNonNull(getSupportActionBar()).setTitle(movie.getTitle());
                 tvOverview.setText(movie.getOverview());
-                tvYear.setText(movie.getRelease());
+                tvYear.setText(movie.getRelease().split("-")[0]);
                 tvTime.setText(String.format("%d mins", movie.getRuntime()));
                 tvGenre.setText(movie.getGenre());
                 rbRating.setRating((float) movie.getRating(5));
 
                 String imageURL;
                 context = getApplicationContext();
-                if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+                if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     imageURL = movie.getBackdropPath();
-                }
-                else{
+                } else {
                     imageURL = movie.getPosterPath();
                 }
-                Glide.with(context).load(String.format("https://image.tmdb.org/t/p/w342/%s",imageURL))
+                Glide.with(context).load(String.format("https://image.tmdb.org/t/p/w342/%s", imageURL))
                         .placeholder(R.mipmap.placeholder)
                         .error(R.mipmap.placeholder)
                         .into(ivPoster);
 
             }
-
 
 
             //If the request is not successfully
@@ -121,9 +119,9 @@ public class ActivityMovie extends AppCompatActivity {
                 try {
                     JSONArray similarMovies = jsonObject.getJSONArray("results");
                     JSONObject jsonSimilar;
-                    for(int j = 0;j<3;j++){
+                    for (int j = 0; j < 3; j++) {
                         jsonSimilar = (JSONObject) similarMovies.get(j);
-                        Glide.with(context).load(String.format("https://image.tmdb.org/t/p/w342/%s",jsonSimilar.getString("poster_path")))
+                        Glide.with(context).load(String.format("https://image.tmdb.org/t/p/w342/%s", jsonSimilar.getString("poster_path")))
                                 .placeholder(R.mipmap.placeholder)
                                 .error(R.mipmap.placeholder)
                                 .into(similarPosters[j]);
@@ -134,7 +132,6 @@ public class ActivityMovie extends AppCompatActivity {
 
 
             }
-
 
 
             //If the request is not successfully
@@ -155,9 +152,9 @@ public class ActivityMovie extends AppCompatActivity {
                 JSONObject jsonVideo;
                 try {
                     JSONArray videoList = jsonObject.getJSONArray("results");
-                    for(int j = 0;j<videoList.length(); j++){
+                    for (int j = 0; j < videoList.length(); j++) {
                         jsonVideo = (JSONObject) videoList.get(j);
-                        if(jsonVideo.getString("type").equals("Trailer")){
+                        if (jsonVideo.getString("type").equals("Trailer")) {
                             videoKey = jsonVideo.getString("key");
                             break;
                         }
@@ -170,7 +167,6 @@ public class ActivityMovie extends AppCompatActivity {
             }
 
 
-
             //If the request is not successfully
             @Override
             public void onFailure(int i, Headers headers, String s, Throwable throwable) {
@@ -179,8 +175,8 @@ public class ActivityMovie extends AppCompatActivity {
         });
         ivPoster.setOnClickListener(v -> {
             Intent i = new Intent(ActivityMovie.this, TrailerActivity.class);
-            i.putExtra("videoKey",videoKey);
-            startActivityForResult(i,20);
+            i.putExtra("videoKey", videoKey);
+            startActivity(i);
         });
     }
 

@@ -9,12 +9,12 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 
-public class TrailerActivity extends YouTubeBaseActivity{
+public class TrailerActivity extends YouTubeBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        final String YT_API = "AIzaSyDbv1H0wuOd9VL6qOSih1L_pIbnS9zCinc";
+        final String YT_API = getString(R.string.yt_api);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trailer);

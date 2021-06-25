@@ -41,7 +41,7 @@ Here's a walkthrough of implemented user stories in portrait mode:
 
 <img src='https://github.com/Esteb37/Flixter/blob/master/Walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-Amd in landscape mode:
+And in landscape mode:
 
 <img src='https://github.com/Esteb37/Flixter/blob/master/Walkthrough_land.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
@@ -61,6 +61,7 @@ The most notable challenges for this assignment was the design aspects of the ap
     Copyright [2021] [Esteban Padilla Cerdio]
 
     Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
 

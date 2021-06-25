@@ -2,7 +2,6 @@ package com.example.flixter.adapters;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,7 +67,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         //Get the movie item at selected position
         Movie movie = movies.get(position);
 
-        //Bind the movie item to the viewholder
+        //Bind the movie item to the view holder
         holder.bind(movie);
 
         //Send position information to the scroll listener

@@ -1,8 +1,8 @@
 # Project 2 - *Flixter*
 
-**Flixter** shows the movies with the best overall rating. The app utilizes the Movie Database API to display images and basic information about these movies to the user.
+**Flixter** allows the user to browse movies from the "Now Playing","Upcoming", and "Top Rated" catalogues and view their details, similar movies and trailer. The application allows limitless scrolling and the ability to search a specific movie. Flixter utilizes the Movie Database API to display images and basic information about these movies to the user.
 
-Time spent: **8** hours spent in total
+Time spent: **20** hours spent in total
 
 ## User Stories
 
@@ -24,20 +24,16 @@ The following **stretch** features are implemented:
 
 The following **additional** features are implemented:
 
-* [x] Implemented Lazy Loading on main movie cataloge for seamless infinite scrolling
-
-* [x] Implemented catalogue menu to choose between Now Playing, Upcoming and Top Rated movies
-
-* [x] Implemented movie lookup through searchbar
-
+* [x] Lazy Loading on main movie catalogue for seamless infinite scrolling
+* [x] Catalogue menu to choose between Now Playing, Upcoming and Top Rated movies
+* [x] Movie lookup through searchbar
 * [x] Additional information in Movie Details page
   * [x] Release date
   * [x] Genre
   * [x] Runtime
-  
-* [x] Retrieved similar movies for selected title with an HTTP request and added their posters
-
-* [x] Implemented a scrolling view to allow movie information to overflow
+* [x] Similar movies for selected title with an HTTP request and added their posters
+* [x] Scrolling view to allow movie information to overflow
+* [x] *Back to top* button to return to home after scrolling.
 
 ## Video Walkthrough
 

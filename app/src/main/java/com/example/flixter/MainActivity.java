@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.flixter.adapters.MovieAdapter;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     int page = 1;
     String API_KEY;
+    String catalogue = "now_playing";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,11 +77,12 @@ public class MainActivity extends AppCompatActivity {
         rvMovies.setLayoutManager((new LinearLayoutManager(this)));
 
         //Create request for the movie catalogue
+
         loadMovies(page);
     }
 
     public void loadMovies(int page){
-        final String URL = String.format("https://api.themoviedb.org/3/movie/top_rated?api_key=%s&language=en-US&page=%s", API_KEY, page);
+        final String URL = String.format("https://api.themoviedb.org/3/movie/%s?api_key=%s&language=en-US&page=%s", catalogue,API_KEY, page);
         client.get(URL, new JsonHttpResponseHandler() {
 
             //If the request is successfully
@@ -108,6 +112,13 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onFailure");
             }
         });
+    }
+
+    public void getCatalogue(View view){
+        catalogue = view.getTag().toString(); ;
+        movies.clear();
+        movieAdapter.notifyDataSetChanged();
+        loadMovies(1);
     }
 
 }

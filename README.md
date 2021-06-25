@@ -24,12 +24,17 @@ The following **stretch** features are implemented:
 
 The following **additional** features are implemented:
 
+* [x] Implemented Lazy Loading on main movie cataloge for seamless infinite scrolling
+
+* [x] Implemented catalogue menu to choose between Now Playing, Upcoming and Top Rated movies
+
 * [x] Added information with a second HTTP request:
   * [x] Release date
   * [x] Genre
   * [x] Runtime
   
-* [x] Retrieved similar movies with a third HTTP request and added posters to the movie pages
+* [x] Retrieved similar movies for selected title with an HTTP request and added their posters
+
 * [x] Implemented a scrolling view to allow movie information to overflow
 
 ## Video Walkthrough

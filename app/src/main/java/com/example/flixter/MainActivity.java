@@ -12,7 +12,9 @@ import android.view.View;
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.flixter.adapters.MovieAdapter;
+import com.example.flixter.databinding.ActivityMainBinding;
 import com.example.flixter.models.Movie;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,13 +44,21 @@ public class MainActivity extends AppCompatActivity {
     String API_KEY;
     String catalogue = "now_playing";
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+
+        View view = binding.getRoot();
+        setContentView(view);
+
         API_KEY = getString(R.string.api_key);
 
         RecyclerView rvMovies = findViewById(R.id.rvMovies);
+        FloatingActionButton btnUp = findViewById(R.id.btnUp);
 
         movies = new ArrayList<>();
 
@@ -67,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+
         //Create the adapter
         movieAdapter = new MovieAdapter(this, movies, onClickListener,onScrollListener);
 
@@ -74,11 +85,22 @@ public class MainActivity extends AppCompatActivity {
         rvMovies.setAdapter(movieAdapter);
 
         //Set a layout manager for the recyclerview
-        rvMovies.setLayoutManager((new LinearLayoutManager(this)));
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        rvMovies.setLayoutManager(layoutManager);
 
         //Create request for the movie catalogue
 
         loadMovies(page);
+
+        btnUp.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                LinearLayoutManager layoutManager = (LinearLayoutManager) rvMovies
+                        .getLayoutManager();
+                layoutManager.scrollToPositionWithOffset(0, 0);
+            }
+        });
     }
 
     public void loadMovies(int page){
@@ -112,10 +134,12 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onFailure");
             }
         });
+
+
     }
 
     public void getCatalogue(View view){
-        catalogue = view.getTag().toString(); ;
+        catalogue = view.getTag().toString();
         movies.clear();
         movieAdapter.notifyDataSetChanged();
         loadMovies(1);

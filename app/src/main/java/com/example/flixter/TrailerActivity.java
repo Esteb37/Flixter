@@ -3,7 +3,10 @@ package com.example.flixter;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
+import com.example.flixter.databinding.ActivityMainBinding;
+import com.example.flixter.databinding.ActivityTrailerBinding;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -17,7 +20,12 @@ public class TrailerActivity extends YouTubeBaseActivity {
         final String YT_API = getString(R.string.yt_api);
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trailer);
+
+
+        ActivityTrailerBinding binding = ActivityTrailerBinding.inflate(getLayoutInflater());
+
+        View view = binding.getRoot();
+        setContentView(view);
 
 
         final String videoKey = getIntent().getStringExtra("videoKey");
